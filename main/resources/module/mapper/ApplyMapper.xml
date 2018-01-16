@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xwrc.xwrc.mapper.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="cn.xwrc.xwrc.pojo.Apply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="jid" property="jid" jdbcType="INTEGER" />
+    <result column="delete" property="delete" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="CHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="CHAR" />
+    <result column="msyq" property="msyq" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, rid, jid, delete, createtime, updatetime, msyq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xwrc.xwrc.pojo.Apply" >
+    insert into apply (id, rid, jid, 
+      delete, createtime, updatetime, 
+      msyq)
+    values (#{id,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{jid,jdbcType=INTEGER}, 
+      #{delete,jdbcType=INTEGER}, #{createtime,jdbcType=CHAR}, #{updatetime,jdbcType=CHAR}, 
+      #{msyq,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xwrc.xwrc.pojo.Apply" >
+    insert into apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="jid != null" >
+        jid,
+      </if>
+      <if test="delete != null" >
+        delete,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="msyq != null" >
+        msyq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="jid != null" >
+        #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=CHAR},
+      </if>
+      <if test="msyq != null" >
+        #{msyq,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xwrc.xwrc.pojo.Apply" >
+    update apply
+    <set >
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="jid != null" >
+        jid = #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        delete = #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=CHAR},
+      </if>
+      <if test="msyq != null" >
+        msyq = #{msyq,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xwrc.xwrc.pojo.Apply" >
+    update apply
+    set rid = #{rid,jdbcType=INTEGER},
+      jid = #{jid,jdbcType=INTEGER},
+      delete = #{delete,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=CHAR},
+      updatetime = #{updatetime,jdbcType=CHAR},
+      msyq = #{msyq,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

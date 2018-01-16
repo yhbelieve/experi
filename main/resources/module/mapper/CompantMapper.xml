@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xwrc.xwrc.mapper.CompantMapper" >
+  <resultMap id="BaseResultMap" type="cn.xwrc.xwrc.pojo.Compant" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="zh" property="zh" jdbcType="CHAR" />
+    <result column="tx" property="tx" jdbcType="CHAR" />
+    <result column="gsm" property="gsm" jdbcType="CHAR" />
+    <result column="frdb" property="frdb" jdbcType="CHAR" />
+    <result column="gsjj" property="gsjj" jdbcType="CHAR" />
+    <result column="isrz" property="isrz" jdbcType="INTEGER" />
+    <result column="delete" property="delete" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="CHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, zh, tx, gsm, frdb, gsjj, isrz, delete, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="findCompany" resultType="Map">
+    SELECT *
+    FROM company WHERE username=#{username} AND password =#{password}
+  </select>
+<select id="getAllCompany" resultType="Map">
+   SELECT *
+    FROM company WHERE DELETE=0
+</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xwrc.xwrc.pojo.Compant" >
+    insert into company (id, username, password, 
+      zh, tx, gsm, frdb, 
+      gsjj, isrz, delete, createtime, 
+      updatetime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{zh,jdbcType=CHAR}, #{tx,jdbcType=CHAR}, #{gsm,jdbcType=CHAR}, #{frdb,jdbcType=CHAR}, 
+      #{gsjj,jdbcType=CHAR}, #{isrz,jdbcType=INTEGER}, #{delete,jdbcType=INTEGER}, #{createtime,jdbcType=CHAR}, 
+      #{updatetime,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xwrc.xwrc.pojo.Compant" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="zh != null" >
+        zh,
+      </if>
+      <if test="tx != null" >
+        tx,
+      </if>
+      <if test="gsm != null" >
+        gsm,
+      </if>
+      <if test="frdb != null" >
+        frdb,
+      </if>
+      <if test="gsjj != null" >
+        gsjj,
+      </if>
+      <if test="isrz != null" >
+        isrz,
+      </if>
+      <if test="delete != null" >
+        delete,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="zh != null" >
+        #{zh,jdbcType=CHAR},
+      </if>
+      <if test="tx != null" >
+        #{tx,jdbcType=CHAR},
+      </if>
+      <if test="gsm != null" >
+        #{gsm,jdbcType=CHAR},
+      </if>
+      <if test="frdb != null" >
+        #{frdb,jdbcType=CHAR},
+      </if>
+      <if test="gsjj != null" >
+        #{gsjj,jdbcType=CHAR},
+      </if>
+      <if test="isrz != null" >
+        #{isrz,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xwrc.xwrc.pojo.Compant" >
+    update company
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="zh != null" >
+        zh = #{zh,jdbcType=CHAR},
+      </if>
+      <if test="tx != null" >
+        tx = #{tx,jdbcType=CHAR},
+      </if>
+      <if test="gsm != null" >
+        gsm = #{gsm,jdbcType=CHAR},
+      </if>
+      <if test="frdb != null" >
+        frdb = #{frdb,jdbcType=CHAR},
+      </if>
+      <if test="gsjj != null" >
+        gsjj = #{gsjj,jdbcType=CHAR},
+      </if>
+      <if test="isrz != null" >
+        isrz = #{isrz,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        delete = #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xwrc.xwrc.pojo.Compant" >
+    update company
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      zh = #{zh,jdbcType=CHAR},
+      tx = #{tx,jdbcType=CHAR},
+      gsm = #{gsm,jdbcType=CHAR},
+      frdb = #{frdb,jdbcType=CHAR},
+      gsjj = #{gsjj,jdbcType=CHAR},
+      isrz = #{isrz,jdbcType=INTEGER},
+      delete = #{delete,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=CHAR},
+      updatetime = #{updatetime,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

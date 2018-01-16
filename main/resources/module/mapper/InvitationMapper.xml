@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xwrc.xwrc.mapper.InvitationMapper" >
+  <resultMap id="BaseResultMap" type="cn.xwrc.xwrc.pojo.Invitation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="CHAR" />
+    <result column="place" property="place" jdbcType="CHAR" />
+    <result column="lxr" property="lxr" jdbcType="CHAR" />
+    <result column="sjh" property="sjh" jdbcType="CHAR" />
+    <result column="bz" property="bz" jdbcType="CHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="delete" property="delete" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="CHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, time, place, lxr, sjh, bz, uid, cid, delete, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from invitation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from invitation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xwrc.xwrc.pojo.Invitation" >
+    insert into invitation (id, time, place, lxr, 
+      sjh, bz, uid, cid, 
+      delete, createtime, updatetime
+      )
+    values (#{id,jdbcType=INTEGER}, #{time,jdbcType=CHAR}, #{place,jdbcType=CHAR}, #{lxr,jdbcType=CHAR}, 
+      #{sjh,jdbcType=CHAR}, #{bz,jdbcType=CHAR}, #{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{delete,jdbcType=INTEGER}, #{createtime,jdbcType=CHAR}, #{updatetime,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xwrc.xwrc.pojo.Invitation" >
+    insert into invitation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="lxr != null" >
+        lxr,
+      </if>
+      <if test="sjh != null" >
+        sjh,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="delete != null" >
+        delete,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=CHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=CHAR},
+      </if>
+      <if test="lxr != null" >
+        #{lxr,jdbcType=CHAR},
+      </if>
+      <if test="sjh != null" >
+        #{sjh,jdbcType=CHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=CHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xwrc.xwrc.pojo.Invitation" >
+    update invitation
+    <set >
+      <if test="time != null" >
+        time = #{time,jdbcType=CHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=CHAR},
+      </if>
+      <if test="lxr != null" >
+        lxr = #{lxr,jdbcType=CHAR},
+      </if>
+      <if test="sjh != null" >
+        sjh = #{sjh,jdbcType=CHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=CHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        delete = #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xwrc.xwrc.pojo.Invitation" >
+    update invitation
+    set time = #{time,jdbcType=CHAR},
+      place = #{place,jdbcType=CHAR},
+      lxr = #{lxr,jdbcType=CHAR},
+      sjh = #{sjh,jdbcType=CHAR},
+      bz = #{bz,jdbcType=CHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      delete = #{delete,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=CHAR},
+      updatetime = #{updatetime,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

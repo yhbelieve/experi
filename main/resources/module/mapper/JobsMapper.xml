@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xwrc.xwrc.mapper.JobsMapper" >
+  <resultMap id="BaseResultMap" type="cn.xwrc.xwrc.pojo.Jobs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="zwmc" property="zwmc" jdbcType="CHAR" />
+    <result column="zwlb" property="zwlb" jdbcType="INTEGER" />
+    <result column="zwlx" property="zwlx" jdbcType="INTEGER" />
+    <result column="yx" property="yx" jdbcType="INTEGER" />
+    <result column="rs" property="rs" jdbcType="INTEGER" />
+    <result column="xlyq" property="xlyq" jdbcType="CHAR" />
+    <result column="gznx" property="gznx" jdbcType="INTEGER" />
+    <result column="delete" property="delete" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="CHAR" />
+    <result column="upadtetime" property="upadtetime" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.xwrc.xwrc.pojo.JobsWithBLOBs" extends="BaseResultMap" >
+    <result column="gzdz" property="gzdz" jdbcType="LONGVARCHAR" />
+    <result column="zwms" property="zwms" jdbcType="LONGVARCHAR" />
+    <result column="dy" property="dy" jdbcType="LONGVARCHAR" />
+    <result column="lxfs" property="lxfs" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cid, zwmc, zwlb, zwlx, yx, rs, xlyq, gznx, delete, createtime, upadtetime
+  </sql>
+  <sql id="Blob_Column_List" >
+    gzdz, zwms, dy, lxfs
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from jobs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jobs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xwrc.xwrc.pojo.JobsWithBLOBs" >
+    insert into jobs (id, cid, zwmc, zwlb, 
+      zwlx, yx, rs, xlyq, 
+      gznx, delete, createtime, 
+      upadtetime, gzdz, zwms, 
+      dy, lxfs)
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{zwmc,jdbcType=CHAR}, #{zwlb,jdbcType=INTEGER}, 
+      #{zwlx,jdbcType=INTEGER}, #{yx,jdbcType=INTEGER}, #{rs,jdbcType=INTEGER}, #{xlyq,jdbcType=CHAR}, 
+      #{gznx,jdbcType=INTEGER}, #{delete,jdbcType=INTEGER}, #{createtime,jdbcType=CHAR}, 
+      #{upadtetime,jdbcType=CHAR}, #{gzdz,jdbcType=LONGVARCHAR}, #{zwms,jdbcType=LONGVARCHAR}, 
+      #{dy,jdbcType=LONGVARCHAR}, #{lxfs,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xwrc.xwrc.pojo.JobsWithBLOBs" >
+    insert into jobs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="zwmc != null" >
+        zwmc,
+      </if>
+      <if test="zwlb != null" >
+        zwlb,
+      </if>
+      <if test="zwlx != null" >
+        zwlx,
+      </if>
+      <if test="yx != null" >
+        yx,
+      </if>
+      <if test="rs != null" >
+        rs,
+      </if>
+      <if test="xlyq != null" >
+        xlyq,
+      </if>
+      <if test="gznx != null" >
+        gznx,
+      </if>
+      <if test="delete != null" >
+        delete,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="upadtetime != null" >
+        upadtetime,
+      </if>
+      <if test="gzdz != null" >
+        gzdz,
+      </if>
+      <if test="zwms != null" >
+        zwms,
+      </if>
+      <if test="dy != null" >
+        dy,
+      </if>
+      <if test="lxfs != null" >
+        lxfs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="zwmc != null" >
+        #{zwmc,jdbcType=CHAR},
+      </if>
+      <if test="zwlb != null" >
+        #{zwlb,jdbcType=INTEGER},
+      </if>
+      <if test="zwlx != null" >
+        #{zwlx,jdbcType=INTEGER},
+      </if>
+      <if test="yx != null" >
+        #{yx,jdbcType=INTEGER},
+      </if>
+      <if test="rs != null" >
+        #{rs,jdbcType=INTEGER},
+      </if>
+      <if test="xlyq != null" >
+        #{xlyq,jdbcType=CHAR},
+      </if>
+      <if test="gznx != null" >
+        #{gznx,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="upadtetime != null" >
+        #{upadtetime,jdbcType=CHAR},
+      </if>
+      <if test="gzdz != null" >
+        #{gzdz,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zwms != null" >
+        #{zwms,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dy != null" >
+        #{dy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lxfs != null" >
+        #{lxfs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xwrc.xwrc.pojo.JobsWithBLOBs" >
+    update jobs
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="zwmc != null" >
+        zwmc = #{zwmc,jdbcType=CHAR},
+      </if>
+      <if test="zwlb != null" >
+        zwlb = #{zwlb,jdbcType=INTEGER},
+      </if>
+      <if test="zwlx != null" >
+        zwlx = #{zwlx,jdbcType=INTEGER},
+      </if>
+      <if test="yx != null" >
+        yx = #{yx,jdbcType=INTEGER},
+      </if>
+      <if test="rs != null" >
+        rs = #{rs,jdbcType=INTEGER},
+      </if>
+      <if test="xlyq != null" >
+        xlyq = #{xlyq,jdbcType=CHAR},
+      </if>
+      <if test="gznx != null" >
+        gznx = #{gznx,jdbcType=INTEGER},
+      </if>
+      <if test="delete != null" >
+        delete = #{delete,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=CHAR},
+      </if>
+      <if test="upadtetime != null" >
+        upadtetime = #{upadtetime,jdbcType=CHAR},
+      </if>
+      <if test="gzdz != null" >
+        gzdz = #{gzdz,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zwms != null" >
+        zwms = #{zwms,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="dy != null" >
+        dy = #{dy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lxfs != null" >
+        lxfs = #{lxfs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xwrc.xwrc.pojo.JobsWithBLOBs" >
+    update jobs
+    set cid = #{cid,jdbcType=INTEGER},
+      zwmc = #{zwmc,jdbcType=CHAR},
+      zwlb = #{zwlb,jdbcType=INTEGER},
+      zwlx = #{zwlx,jdbcType=INTEGER},
+      yx = #{yx,jdbcType=INTEGER},
+      rs = #{rs,jdbcType=INTEGER},
+      xlyq = #{xlyq,jdbcType=CHAR},
+      gznx = #{gznx,jdbcType=INTEGER},
+      delete = #{delete,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=CHAR},
+      upadtetime = #{upadtetime,jdbcType=CHAR},
+      gzdz = #{gzdz,jdbcType=LONGVARCHAR},
+      zwms = #{zwms,jdbcType=LONGVARCHAR},
+      dy = #{dy,jdbcType=LONGVARCHAR},
+      lxfs = #{lxfs,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xwrc.xwrc.pojo.Jobs" >
+    update jobs
+    set cid = #{cid,jdbcType=INTEGER},
+      zwmc = #{zwmc,jdbcType=CHAR},
+      zwlb = #{zwlb,jdbcType=INTEGER},
+      zwlx = #{zwlx,jdbcType=INTEGER},
+      yx = #{yx,jdbcType=INTEGER},
+      rs = #{rs,jdbcType=INTEGER},
+      xlyq = #{xlyq,jdbcType=CHAR},
+      gznx = #{gznx,jdbcType=INTEGER},
+      delete = #{delete,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=CHAR},
+      upadtetime = #{upadtetime,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

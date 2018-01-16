@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xwrc.xwrc.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="cn.xwrc.xwrc.pojo.Admin">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="CHAR"/>
+        <result column="password" property="password" jdbcType="CHAR"/>
+        <result column="sjh" property="sjh" jdbcType="CHAR"/>
+        <result column="yx" property="yx" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, username, password, sjh, yx
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from admin
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAllUser" resultType="Map" >
+    select *  from admin
+  </select>
+
+
+    <select id="findAdmin" resultType="Map">
+    select *
+    from admin
+    where username = #{username} and password = #{password}
+  </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="cn.xwrc.xwrc.pojo.Admin">
+    insert into admin (id, username, password, 
+      sjh, yx)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{sjh,jdbcType=CHAR}, #{yx,jdbcType=CHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="cn.xwrc.xwrc.pojo.Admin">
+        insert into admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="sjh != null">
+                sjh,
+            </if>
+            <if test="yx != null">
+                yx,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=CHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=CHAR},
+            </if>
+            <if test="sjh != null">
+                #{sjh,jdbcType=CHAR},
+            </if>
+            <if test="yx != null">
+                #{yx,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.xwrc.xwrc.pojo.Admin">
+        update admin
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=CHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=CHAR},
+            </if>
+            <if test="sjh != null">
+                sjh = #{sjh,jdbcType=CHAR},
+            </if>
+            <if test="yx != null">
+                yx = #{yx,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.xwrc.xwrc.pojo.Admin">
+    update admin
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      sjh = #{sjh,jdbcType=CHAR},
+      yx = #{yx,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
